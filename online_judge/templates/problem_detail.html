@@ -1,0 +1,34 @@
+<h1>{{ problem.title }}</h1>
+<p><strong>Difficulty:</strong> {{ problem.difficulty }}</p>
+<p><strong>Topic:</strong> {{ problem.topic }}</p>
+<p><strong>Description:</strong> {{ problem.description }}</p>
+<p><strong>Constraints:</strong> {{ problem.constraints }}</p>
+{% if problem.hints %}
+<p><strong>Hints:</strong> {{ problem.hints }}</p>
+{% endif %}
+
+<form method="post" action="{% url 'submit_code' problem.id %}">
+  {% csrf_token %}
+  
+  <label for="language">Select Language:</label>
+  <select name="language" id="language" required>
+    <option value="py">Python</option>
+    <option value="cpp">C++</option>
+    <option value="c">C</option>
+  </select>
+
+  <br><br>
+  
+  <label for="code">Enter your code here:</label><br>
+  <textarea id="code" name="code" rows="15" cols="80" required></textarea>
+  
+  <br><br>
+  
+  <button type="submit">Submit Code</button>
+</form>
+
+{% if verdict %}
+<hr>
+<h3>Result: {{ verdict }}</h3>
+<pre>{{ output }}</pre>
+{% endif %}

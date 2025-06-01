@@ -1,0 +1,17 @@
+<h2>Problem List</h2>
+<ul>
+  {% for problem in problems %}
+    <li>
+      <a href="{% url 'problem_detail' problem.id %}">
+        {{ problem.title }} - {{ problem.difficulty }}
+      </a>
+    </li>
+  {% empty %}
+    <li>No problems available.</li>
+  {% endfor %}
+</ul>
+{% if user.role == 'setter' %}
+  <a href="{% url 'add_problem' %}">Add New Problem</a>
+{% endif %}
+<a href="{% url 'logout' %}">Logout</a>
+
