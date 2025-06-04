@@ -1,0 +1,658 @@
+/* Reset and base */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background-color: #121212;
+    color: #fff;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+}
+
+/* Navbar styles */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 50px;
+    background-color: #1e1e1e;
+    border-bottom: 2px solid #f5a623;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    z-index: 1000;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.7);
+}
+
+.brand {
+    font-weight: 900;
+    font-size: 1.5rem;
+    color: #f5a623;
+    text-decoration: none;
+    letter-spacing: 2px;
+}
+
+.navbar-right {
+    display: flex;
+    gap: 25px;
+}
+
+.nav-link {
+    color: #f5a623;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s ease;
+    padding: 5px 8px;
+    border-radius: 4px;
+}
+
+.nav-link:hover {
+    background-color: #f5a623;
+    color: #121212;
+}
+
+/* Main container */
+.container {
+    margin-top: 70px; /* space below navbar */
+    padding: 20px;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Buttons */
+button {
+    background-color: #f5a623;
+    border: none;
+    padding: 10px 18px;
+    color: #121212;
+    font-weight: 700;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+    font-size: 1rem;
+}
+
+button:hover {
+    background-color: #d18e0e;
+}
+
+/* Select and textarea */
+select, textarea {
+    background-color: #222;
+    border: 1px solid #444;
+    border-radius: 4px;
+    color: #eee;
+    padding: 8px;
+    font-family: monospace, monospace;
+    font-size: 1rem;
+    width: 100%;
+    resize: vertical;
+    margin-top: 8px;
+}
+
+select:focus, textarea:focus {
+    outline: none;
+    border-color: #f5a623;
+}
+
+/* Output box */
+.output-box {
+    background-color: #1e1e1e;
+    border: 1px solid #f5a623;
+    padding: 15px;
+    margin-top: 15px;
+    white-space: pre-wrap;
+    border-radius: 4px;
+    font-family: monospace, monospace;
+    color: #f5a623;
+    width: 100%;        /* or your preferred width */
+    height: auto;       /* ensures height fits content */
+    overflow-x: auto;   /* horizontal scroll if needed */
+    /* Remove any min-height or max-height unless you want to limit it */
+}
+
+
+/* Flex layout for your problem detail page */
+.container-flex {
+    display: flex;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+.left-panel {
+    flex: 1 1 40%;
+    padding-right: 20px;
+    border-right: 2px solid #333;
+}
+
+.right-panel {
+    flex: 1 1 55%;
+}
+
+h1, h3 {
+    color: #f5a623;
+    margin-bottom: 15px;
+}
+
+/* Responsive for small screens */
+@media (max-width: 768px) {
+    .container-flex {
+        flex-direction: column;
+    }
+    .left-panel, .right-panel {
+        flex: 1 1 100%;
+        border-right: none;
+        padding-right: 0;
+    }
+    .navbar-right {
+        gap: 15px;
+    }
+}
+
+.problems-title {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #fff;
+    margin-bottom: 18px;
+    letter-spacing: 0.5px;
+}
+
+.problems-table-wrapper {
+    overflow-x: auto;
+    background: #232323;
+    border-radius: 6px;
+    margin-top: 18px;
+}
+
+.problems-table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 700px;
+    background: #232323;
+}
+
+.problems-table th, .problems-table td {
+    padding: 12px 10px;
+    font-size: 1rem;
+}
+
+.problems-table th {
+    color: #ccc;
+    font-weight: 700;
+    background: #232323;
+    border-bottom: 2px solid #444;
+    text-align: left;
+}
+
+.difficulty-header,
+.difficulty-cell {
+    text-align: right !important;
+}
+
+.problems-table tbody tr:nth-child(even) {
+    background-color: #232323;
+}
+
+.problems-table tbody tr:nth-child(odd) {
+    background-color: #181818;
+}
+
+.problems-table tr:hover {
+    background: #282828;
+}
+
+.problems-title-link {
+    color: #fff;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.2s;
+}
+
+.problems-title-link:hover {
+    color: #f5a623;
+}
+
+.problems-topic {
+    display: inline-block;
+    background: #363636;
+    color: #45b9c3;
+    font-size: 0.92rem;
+    padding: 2px 10px;
+    border-radius: 12px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+}
+
+.problems-difficulty {
+    font-weight: 700;
+    padding: 3px 12px;
+    border-radius: 12px;
+    font-size: 0.97rem;
+    display: inline-block;
+    min-width: 50px;
+    text-align: right;
+}
+
+.problems-difficulty.easy {
+    color: #27ae60;
+    background: #1e4620;
+}
+
+.problems-difficulty.medium {
+    color: #f5a623;
+    background: #4d3c0a;
+}
+
+.problems-difficulty.hard {
+    color: #e74c3c;
+    background: #4a1c1c;
+}
+
+.problems-empty {
+    text-align: center;
+    color: #aaa;
+    padding: 20px 0;
+}
+
+.problems-add-btn-wrapper {
+    margin-bottom: 14px;
+    text-align: right;
+}
+.problems-add-btn {
+    background: #f5a623;
+    color: #121212;
+    font-weight: 700;
+    padding: 8px 18px;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: background 0.2s;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.10);
+    font-size: 1rem;
+}
+.problems-add-btn:hover {
+    background: #f5a623;
+}
+.problems-table tbody tr:nth-child(odd) {
+    background-color: #232323;
+}
+.problems-table tbody tr:nth-child(even) {
+    background-color: #181818;
+}
+.add-problem-title {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #f5a623;
+    margin-bottom: 24px;
+    letter-spacing: 0.5px;
+    border-bottom: 2px solid #f5a623;
+    padding-bottom: 8px;
+}
+
+.add-problem-form-wrapper {
+    max-width: 600px;
+    margin: 0 auto;
+    background: #181818;
+    padding: 32px 28px 28px 28px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.18);
+}
+
+.add-problem-form .form-group {
+    margin-bottom: 22px;
+}
+
+.add-problem-form .form-label {
+    display: block;
+    color: #f5a623;
+    font-weight: 600;
+    margin-bottom: 8px;
+    font-size: 1.08rem;
+    letter-spacing: 0.02em;
+}
+
+.add-problem-form input,
+.add-problem-form select,
+.add-problem-form textarea {
+    width: 100%;
+    background: #232323;
+    color: #fff;
+    border: 1px solid #444;
+    border-radius: 4px;
+    padding: 10px 12px;
+    font-size: 1rem;
+    transition: border-color 0.2s;
+}
+
+.add-problem-form input:focus,
+.add-problem-form select:focus,
+.add-problem-form textarea:focus {
+    border-color: #f5a623;
+    outline: none;
+}
+
+.form-help {
+    color: #aaa;
+    font-size: 0.93rem;
+    margin-top: 2px;
+    display: block;
+}
+
+.form-error {
+    color: #e74c3c;
+    font-size: 0.95rem;
+    margin-top: 4px;
+}
+
+.add-problem-submit-btn {
+    background: #f5a623;
+    color: #121212;
+    font-weight: 700;
+    padding: 10px 24px;
+    border-radius: 5px;
+    border: none;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: background 0.2s;
+    margin-top: 8px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.10);
+}
+
+.add-problem-submit-btn:hover {
+    background: #d18e0e;
+}
+
+@media (max-width: 600px) {
+    .add-problem-form-wrapper {
+        padding: 18px 8px 14px 8px;
+    }
+    .add-problem-title {
+        font-size: 1.3rem;
+        padding-bottom: 5px;
+    }
+}
+
+.auth-title {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #f5a623;
+    margin-bottom: 24px;
+    letter-spacing: 0.5px;
+    border-bottom: 2px solid #f5a623;
+    padding-bottom: 8px;
+    text-align: center;
+}
+
+.auth-form-wrapper {
+    max-width: 400px;
+    margin: 0 auto;
+    background: #181818;
+    padding: 32px 28px 28px 28px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.18);
+}
+
+.auth-form .form-group {
+    margin-bottom: 22px;
+}
+
+.auth-form .form-label {
+    display: block;
+    color: #f5a623;
+    font-weight: 600;
+    margin-bottom: 8px;
+    font-size: 1.08rem;
+    letter-spacing: 0.02em;
+}
+
+.auth-form input {
+    width: 100%;
+    background: #232323;
+    color: #fff;
+    border: 1px solid #444;
+    border-radius: 4px;
+    padding: 10px 12px;
+    font-size: 1rem;
+    transition: border-color 0.2s;
+}
+
+.auth-form input:focus {
+    border-color: #f5a623;
+    outline: none;
+}
+
+.form-error {
+    color: #e74c3c;
+    font-size: 0.95rem;
+    margin-top: 4px;
+}
+
+.auth-submit-btn {
+    background: #f5a623;
+    color: #121212;
+    font-weight: 700;
+    padding: 10px 24px;
+    border-radius: 5px;
+    border: none;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: background 0.2s;
+    margin-top: 8px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.10);
+    width: 100%;
+}
+
+.auth-submit-btn:hover {
+    background: #d18e0e;
+}
+
+.auth-link-text {
+    margin-top: 18px;
+    color: #aaa;
+    text-align: center;
+    font-size: 1rem;
+}
+
+.auth-link {
+    color: #f5a623;
+    text-decoration: underline;
+    font-weight: 600;
+    margin-left: 4px;
+}
+.auth-link:hover {
+    color: #fff;
+}
+
+@media (max-width: 600px) {
+    .auth-form-wrapper {
+        padding: 18px 8px 14px 8px;
+    }
+    .auth-title {
+        font-size: 1.3rem;
+        padding-bottom: 5px;
+    }
+}
+
+.navbar-right {
+    display: flex;
+    gap: 25px;
+    align-items: center; /* Ensures vertical centering of all children */
+}
+
+.navbar-right form {
+    display: flex;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar-right .nav-link,
+.navbar-right button.nav-link {
+    background: none;
+    border: none;
+    padding: 5px 8px;
+    color: #f5a623;
+    font-weight: 600;
+    font-size: 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: color 0.3s, background 0.3s;
+    font-family: inherit;
+    line-height: 1.2;
+    display: flex;
+    align-items: center;
+    /* Remove default button min-width/min-height and outline */
+    min-width: 0;
+    min-height: 0;
+    outline: none;
+    box-shadow: none;
+}
+
+.navbar-right button.nav-link:hover,
+.navbar-right .nav-link:hover {
+    background-color: #f5a623;
+    color: #121212;
+}
+
+.profile-title {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #f5a623;
+    margin-bottom: 24px;
+    border-bottom: 2px solid #f5a623;
+    padding-bottom: 8px;
+}
+
+.profile-card {
+    background: #181818;
+    padding: 32px 28px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.18);
+    max-width: 600px;
+    margin: 0 auto 32px auto;
+}
+
+.profile-info {
+    margin-bottom: 18px;
+}
+
+.profile-row {
+    margin-bottom: 12px;
+    font-size: 1.08rem;
+}
+
+.profile-label {
+    color: #f5a623;
+    font-weight: 600;
+    margin-right: 10px;
+}
+
+.profile-role {
+    background: #363636;
+    color: #f5a623;
+    padding: 2px 12px;
+    border-radius: 12px;
+    font-weight: 600;
+    font-size: 0.98rem;
+}
+
+.profile-subtitle {
+    color: #f5a623;
+    font-size: 1.3rem;
+    margin-bottom: 10px;
+    margin-top: 32px;
+}
+
+.profile-submissions-wrapper {
+    overflow-x: auto;
+    background: #232323;
+    border-radius: 6px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.10);
+    margin-bottom: 32px;
+}
+
+.profile-submissions-table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 600px;
+    background: #232323;
+}
+
+.profile-submissions-table th, .profile-submissions-table td {
+    padding: 12px 10px;
+    font-size: 1rem;
+}
+
+.profile-submissions-table th {
+    color: #ccc;
+    font-weight: 700;
+    background: #232323;
+    border-bottom: 2px solid #444;
+    text-align: left;
+}
+
+.profile-submissions-table tbody tr:nth-child(odd) {
+    background-color: #181818;
+}
+.profile-submissions-table tbody tr:nth-child(even) {
+    background-color: #232323;
+}
+
+.profile-problem-link {
+    color: #f5a623;
+    font-weight: 600;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+.profile-problem-link:hover {
+    color: #fff;
+}
+
+.profile-verdict {
+    font-weight: 700;
+    border-radius: 8px;
+    padding: 2px 10px;
+}
+.profile-verdict.accepted {
+    color: #27ae60;
+    background: #1e4620;
+}
+.profile-verdict.wrong {
+    color: #e74c3c;
+    background: #4a1c1c;
+}
+.profile-verdict.runtime {
+    color: #f5a623;
+    background: #4d3c0a;
+}
+.profile-empty {
+    color: #aaa;
+    padding: 24px;
+    text-align: center;
+}
+.ai-review-btn {
+    background: #f5a623;
+    color: #121212;
+    font-weight: 700;
+    border: none;
+    border-radius: 5px;
+    padding: 8px 20px;
+    cursor: pointer;
+    margin-top: 8px;
+    transition: background 0.2s;
+}
+.ai-review-btn:disabled {
+    background: #aaa;
+    cursor: not-allowed;
+}
+#ai-review-result {
+    background: #232323;
+    color: #f5a623;
+    padding: 16px;
+    border-radius: 6px;
+    font-size: 1.08rem;
+}

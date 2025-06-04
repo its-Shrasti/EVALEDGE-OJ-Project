@@ -1,5 +1,24 @@
-<form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Submit Problem</button>
-</form>
+{% extends 'base.html' %}
+{% block title %}Add Problem - EvalEdge{% endblock %}
+
+{% block content %}
+<h2 class="add-problem-title">Add New Problem</h2>
+<div class="add-problem-form-wrapper">
+    <form method="post" class="add-problem-form">
+        {% csrf_token %}
+        {% for field in form %}
+            <div class="form-group">
+                <label for="{{ field.id_for_label }}" class="form-label">{{ field.label }}</label>
+                {{ field }}
+                {% if field.help_text %}
+                    <small class="form-help">{{ field.help_text }}</small>
+                {% endif %}
+                {% for error in field.errors %}
+                    <div class="form-error">{{ error }}</div>
+                {% endfor %}
+            </div>
+        {% endfor %}
+        <button type="submit" class="add-problem-submit-btn">Submit Problem</button>
+    </form>
+</div>
+{% endblock %}

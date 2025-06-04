@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% block title %}Profile - EvalEdge{% endblock %}
+
+{% block content %}
+<h2 class="profile-title">Your Profile</h2>
+<div class="profile-card">
+    <div class="profile-info">
+        <div class="profile-row"><span class="profile-label">Username:</span> {{ user.username }}</div>
+        <div class="profile-row"><span class="profile-label">Email:</span> {{ user.email }}</div>
+        <div class="profile-row"><span class="profile-label">Role:</span>
+            <span class="profile-role">{{ user.get_role_display }}</span>
+        </div>
+        <div class="profile-row"><span class="profile-label">Joined:</span> {{ user.created_at|date:"F j, Y" }}</div>
+    </div>
+</div>
+
+<h3 class="profile-subtitle">Your Submissions</h3>
+<div class="profile-submissions-wrapper">
+    {% if submissions %}
+    <table class="profile-submissions-table">
+        <thead>
+            <tr>
+                <th>Problem</th>
+                <th>Verdict</th>
+                <th>Language</th>
+                <th>Submitted At</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for sub in submissions %}
+            <tr>
+                <td>
+                    <a href="{% url 'problem_detail' sub.problem.id %}" class="profile-problem-link">{{ sub.problem.title }}</a>
+                </td>
+                <td>
+                    <span class="profile-verdict {{ sub.verdict|lower }}">{{ sub.verdict }}</span>
+                </td>
+                <td>{{ sub.get_language_display }}</td>
+                <td>{{ sub.submitted_at|date:"M d, Y H:i" }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+        <div class="profile-empty">No submissions yet.</div>
+    {% endif %}
+</div>
+{% endblock %}

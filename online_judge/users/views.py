@@ -2,6 +2,8 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate
 from .forms import RegisterForm
 from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth.decorators import login_required
+from problems.models import Submission
 
 def register_view(request):
     if request.method == 'POST':
@@ -20,5 +22,22 @@ def login_view(request):
         login(request, form.get_user())
         return redirect('problem_list')
     return render(request, 'login.html', {'form': form})
+
+
+
+def home_view(request):
+    return render(request, 'home.html')
+
+
+
+
+@login_required
+def profile_view(request):
+    user = request.user
+    submissions = Submission.objects.filter(user=user).select_related('problem').order_by('-submitted_at')
+    return render(request, 'profile.html', {
+        'user': user,
+        'submissions': submissions,
+    })
 
 # Create your views here.

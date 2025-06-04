@@ -1,17 +1,53 @@
-<h2>Problem List</h2>
-<ul>
-  {% for problem in problems %}
-    <li>
-      <a href="{% url 'problem_detail' problem.id %}">
-        {{ problem.title }} - {{ problem.difficulty }}
-      </a>
-    </li>
-  {% empty %}
-    <li>No problems available.</li>
-  {% endfor %}
-</ul>
-{% if user.role == 'setter' %}
-  <a href="{% url 'add_problem' %}">Add New Problem</a>
-{% endif %}
-<a href="{% url 'logout' %}">Logout</a>
+{% extends 'base.html' %}
+{% block title %}Problem List - EvalEdge{% endblock %}
 
+{% block content %}
+<h2 class="problems-title">Problem List</h2>
+
+{% if user.role == 'setter' %}
+  <div class="problems-add-btn-wrapper">
+    <a href="{% url 'add_problem' %}" class="problems-add-btn">+ Add New Problem</a>
+  </div>
+{% endif %}
+
+<div class="problems-table-wrapper">
+    <table class="problems-table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Title</th>
+                <th>Topic</th>
+                <th class="difficulty-header">Difficulty</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for problem in problems %}
+            <tr>
+                <td>{{ forloop.counter }}</td>
+                <td>
+                    <a href="{% url 'problem_detail' problem.id %}" class="problems-title-link">
+                        <strong>{{ problem.title }}</strong>
+                    </a>
+                </td>
+                <td>
+                    <span class="problems-topic">{{ problem.topic }}</span>
+                </td>
+                <td class="difficulty-cell">
+                    {% if problem.difficulty == 'easy' %}
+                        <span class="problems-difficulty easy">Easy</span>
+                    {% elif problem.difficulty == 'medium' %}
+                        <span class="problems-difficulty medium">Med.</span>
+                    {% elif problem.difficulty == 'hard' %}
+                        <span class="problems-difficulty hard">Hard</span>
+                    {% endif %}
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="4" class="problems-empty">No problems available.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

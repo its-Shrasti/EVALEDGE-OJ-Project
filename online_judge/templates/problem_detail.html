@@ -1,34 +1,85 @@
-<h1>{{ problem.title }}</h1>
-<p><strong>Difficulty:</strong> {{ problem.difficulty }}</p>
-<p><strong>Topic:</strong> {{ problem.topic }}</p>
-<p><strong>Description:</strong> {{ problem.description }}</p>
-<p><strong>Constraints:</strong> {{ problem.constraints }}</p>
-{% if problem.hints %}
-<p><strong>Hints:</strong> {{ problem.hints }}</p>
-{% endif %}
+{% extends 'base.html' %}
 
-<form method="post" action="{% url 'submit_code' problem.id %}">
-  {% csrf_token %}
-  
-  <label for="language">Select Language:</label>
-  <select name="language" id="language" required>
-    <option value="py">Python</option>
-    <option value="cpp">C++</option>
-    <option value="c">C</option>
-  </select>
+{% block title %}Problem - {{ problem.title }}{% endblock %}
 
-  <br><br>
-  
-  <label for="code">Enter your code here:</label><br>
-  <textarea id="code" name="code" rows="15" cols="80" required></textarea>
-  
-  <br><br>
-  
-  <button type="submit">Submit Code</button>
-</form>
+{% block content %}
+<div class="container-flex">
 
-{% if verdict %}
-<hr>
-<h3>Result: {{ verdict }}</h3>
-<pre>{{ output }}</pre>
-{% endif %}
+    <!-- Left Panel -->
+    <div class="left-panel">
+        <h1>{{ problem.title }}</h1>
+        <p><strong>Difficulty:</strong> {{ problem.difficulty }}</p>
+        <p><strong>Topic:</strong> {{ problem.topic }}</p>
+        <p><strong>Description:</strong></p>
+        <p>{{ problem.description }}</p>
+        <p><strong>Constraints:</strong></p>
+        <p>{{ problem.constraints }}</p>
+        {% if problem.hints %}
+            <p><strong>Hints:</strong> {{ problem.hints }}</p>
+        {% endif %}
+    </div>
+
+    <!-- Right Panel -->
+    <div class="right-panel">
+        <form method="post" action="{% url 'submit_code' problem.id %}">
+            {% csrf_token %}
+
+            <label for="language">Select Language:</label>
+            <select name="language" id="language" required>
+                <option value="py" {% if submitted_language == "py" %}selected{% endif %}>Python</option>
+                <option value="cpp" {% if submitted_language == "cpp" %}selected{% endif %}>C++</option>
+                <option value="c" {% if submitted_language == "c" %}selected{% endif %}>C</option>
+            </select>
+
+            <label for="code">Code:</label>
+            <textarea id="code" name="code" rows="15" required>{{ submitted_code }}</textarea>
+
+            <label for="custom_input">Custom Input :</label>
+            <textarea id="custom_input" name="custom_input" rows="5">{{ custom_input }}</textarea>
+
+            <div class="btn-group">
+                <button type="submit" name="action" value="run">Run</button>
+                <button type="submit" name="action" value="submit">Submit</button>
+                <!--button type="submit" name="action" value="ai_review">AI Review</button-->
+            </div>
+        </form>
+        <!-- ... your main code submission form ... -->
+
+        <!-- AI Review Form-->
+        <form method="post" action="{% url 'problem_detail' problem.id %}" style="margin-top: 20px;">
+            {% csrf_token %}
+            <input type="hidden" name="action" value="ai_review">
+            <input type="hidden" name="language" value="{{ submitted_language|default:'py' }}">
+            <input type="hidden" name="code" value="{{ submitted_code|default:'' }}">
+            <button type="submit" class="btn">AI Review</button>
+        </form>
+    
+        {% if ai_feedback %}
+            <div class="output-box" style="margin-top: 20px;">
+                <h3>AI Review:</h3>
+                <div class="ai-feedback-box">{{ ai_feedback|safe }}</div>
+            </div>
+        {% endif %}
+        
+        {% if run_output %}
+            <div class="output-box">
+                <h3>Output:</h3>
+                <pre>{{ run_output }}</pre>
+            </div>
+        {% endif %}
+
+        {% if verdict %}
+            <div class="output-box">
+                <h3>Verdict: {{ verdict }}</h3>
+                {% if error_message %}
+                    <p style="color: red;">{{ error_message }}</p>
+                {% endif %}
+                {% if failed_case %}
+                    <p>Failed Test Case #: {{ failed_case }}</p>
+                {% endif %}
+            </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
+
