@@ -58,10 +58,8 @@ def problem_detail(request, problem_id):
     if request.method == "POST":
         submitted_language = request.POST.get("language", "py")
         submitted_code = request.POST.get("code", "")
-        #print("POST data:", request.POST.dict())
-
         action = request.POST.get("action")
-        #print("Action received:", action)
+        
         if action == "ai_review":
             prompt = (
                 "You are a code reviewer for a competitive programming judge. "
