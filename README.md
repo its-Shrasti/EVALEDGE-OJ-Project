@@ -26,8 +26,6 @@ A modern, open-source, Dockerized Django Online Judge for code evaluation and pr
 
 ## 📸 Screenshots
 
-> **Tip:** Add your own screenshots in the `screenshots/` folder and update the paths below.
-
 | Home Page                        | Problem View                       | Submission Result                |
 |-----------------------------------|------------------------------------|----------------------------------|
 | ![](./screenshots/home.png)       | ![](./screenshots/problem.png)     | ![](./screenshots/result.png)    |
