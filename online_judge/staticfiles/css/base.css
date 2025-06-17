@@ -835,21 +835,6 @@ h1, h3 {
 .footer-link:hover {
     color: #fff;
 }
-.footer-link svg {
-    vertical-align: middle;
-    margin: 0 6px;
-    fill: #ff6c1a; /* Your brand orange */
-    transition: fill 0.2s;
-}
-.footer-link:hover svg {
-    fill: #fff;
-}
-.footer-icons {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-}
-
 @media (max-width: 900px) {
     .hero-content,
     .features-cards,

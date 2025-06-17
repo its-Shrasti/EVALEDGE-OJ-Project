@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Welcome to EvalEdge{% endblock %}
+
+{% block content %}
+<div class="landing-hero">
+    <div class="hero-text">
+        <h1><span class="brand-highlight"><center>Master Coding Skills on EvalEdge</center></span></h1>
+        <p class="hero-subtitle">
+            <center>A modern, AI-powered coding platform for problem-solving, learning, and growth — fast, reliable, and personal.</center>
+        </p>
+        <div class="hero-actions">
+            <center>
+            <a href="{% url 'register' %}" class="btn btn-primary">Get Started</a>
+            <a href="{% url 'problem_list' %}" class="btn btn-secondary">View Problems</a>
+            </center>
+        </div>
+    </div>
+    <div class="hero-illustration">
+        <img src="{% static 'images/hero-coding.svg' %}" alt="Coding Illustration" />
+    </div>
+</div>
+
+<div class="features-section">
+    <h2><center>Why Choose EvalEdge?<center></h2>
+    <div class="features-cards">
+        <div class="feature-card">
+            <span class="feature-icon">⚡</span>
+            <h3>Instant Feedback</h3>
+            <p>Real-time AI-powered code reviews and verdicts.</p>
+        </div>
+        <div class="feature-card">
+            <span class="feature-icon">🏆</span>
+            <h3>Personalized Practice</h3>
+            <p>Handpicked problems tailored to your skill level.</p>
+        </div>
+        <div class="feature-card">
+            <span class="feature-icon">🤝</span>
+            <h3>Community & Contests</h3>
+            <p>Compete, collaborate, and grow with peers.</p>
+        </div>
+    </div>
+</div>
+
+<div class="how-it-works-section">
+    <h2><center>How It Works?</center></h2>
+    <div class="steps">
+    <div class="step"><span class="step-icon">1</span>Sign Up & Set Your Goals</div>
+    <div class="step"><span class="step-icon">2</span>Solve Problems, Submit Solutions</div>
+    <div class="step"><span class="step-icon">3</span>Get AI Feedback, Improve, Track Progress</div>
+    <div class="step"><span class="step-icon">4</span>Join Contests & Climb the Leaderboard</div>
+</div>
+</div>
+
+<div class="cta-section">
+    <h2>Ready to level up your coding?</h2>
+    <p>Join EvalEdge and start solving real challenges today.</p>
+    <br>
+    <a href="{% url 'register' %}" class="btn btn-primary btn-lg">Create Account</a>
+</div>
+
+<footer class="footer">
+    <div class="footer-content">
+        <span>© 2025 EvalEdge — Built by <span class="footer-dev-name">Shrasti Dwivedi</span></span>
+        <span class="footer-icons">
+            <a href="https://github.com/its-Shrasti" target="_blank" class="footer-link" title="GitHub" aria-label="GitHub">
+                <svg width="22" height="22" fill="currentColor" viewBox="0 0 24 24"><path d="M12 .3a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2.1c-3.3.7-4-1.6-4-1.6-.5-1.2-1.2-1.5-1.2-1.5-1-.7.1-.7.1-.7 1.1.1 1.7 1.1 1.7 1.1 1 .1.8 2.1 1.7 2.5.8.1 1.6-.1 2.3-.4.1-.6.4-1.1.7-1.4-2.7-.3-5.5-1.3-5.5-5.7 0-1.3.5-2.4 1.2-3.2-.1-.3-.5-1.6.1-3.2 0 0 1-.3 3.3 1.2a11.3 11.3 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.6 1.6.2 2.9.1 3.2.8.8 1.2 1.9 1.2 3.2 0 4.4-2.8 5.4-5.5 5.7.4.3.8 1 .8 2v3c0 .3.2.7.8.6A12 12 0 0 0 12 .3"></path></svg>
+            </a>
+            <a href="https://linkedin.com/in/shrasti-dwivedi" target="_blank" class="footer-link" title="LinkedIn" aria-label="LinkedIn">
+                <svg width="22" height="22" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.8 0-5 2.2-5 5v14c0 2.8 2.2 5 5 5h14c2.8 0 5-2.2 5-5v-14c0-2.8-2.2-5-5-5zM7 19h-3v-9h3v9zM5.5 8.5c-1 0-1.7-.8-1.7-1.7s.7-1.7 1.7-1.7c1 0 1.7.8 1.7 1.7s-.7 1.7-1.7 1.7zM21 19h-3v-4.6c0-1.1 0-2.6-1.6-2.6-1.6 0-1.8 1.2-1.8 2.5v4.7h-3v-9h2.8v1.2h.1c.4-.7 1.3-1.4 2.7-1.4 2.9 0 3.5 1.9 3.5 4.4v4.8z"></path></svg>
+            </a>
+            <a href="mailto:shrastidwivedi11@gmail.com" class="footer-link" title="Email" aria-label="Email">
+                <svg width="22" height="22" fill="currentColor" viewBox="0 0 24 24"><path d="M12 13.1l-11.8-9.1c-.2-.1-.2-.3-.2-.5 0-.2.2-.5.5-.5h23c.3 0 .5.3.5.5 0 .2-.1.4-.2.5l-11.8 9.1zm0 2.3l11.8-9.1c.2-.1.2-.3.2-.5v13c0 .3-.2.5-.5.5h-23c-.3 0-.5-.2-.5-.5v-13c0 .2.1.4.2.5l11.8 9.1z"></path></svg>
+            </a>
+        </span>
+    </div>
+</footer>
+
+{% endblock %}
+

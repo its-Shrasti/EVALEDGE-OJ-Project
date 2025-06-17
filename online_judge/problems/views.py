@@ -10,7 +10,7 @@ import uuid
 import subprocess
 import sys
 
-@login_required
+
 def problem_list(request):
     problems = Problem.objects.all()
     return render(request, 'problem_list.html', {'problems': problems})

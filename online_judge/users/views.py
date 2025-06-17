@@ -24,10 +24,10 @@ def login_view(request):
     return render(request, 'login.html', {'form': form})
 
 
-
 def home_view(request):
-    return render(request, 'home.html')
-
+    if request.user.is_authenticated:
+        return render(request, 'home.html')
+    return render(request, 'landing.html')
 
 
 
