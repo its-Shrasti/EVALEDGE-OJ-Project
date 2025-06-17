@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-!5c&kl6cz464)=4svx8ry_h0cu=ljth^!ab@#%6@k_!(=tvj-h
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG =False
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1','evaledge.xyz','your-ec2-public-dns']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1','evaledge.xyz','13.51.182.58','ec2-13-51-182-58.eu-north-1.compute.amazonaws.com','www.evaledge.xyz']
 
 
 # Application definition
@@ -52,6 +52,8 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+CSRF_TRUSTED_ORIGINS = ['https://evaledge.xyz', 'https://www.evaledge.xyz']
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 
 
@@ -132,6 +134,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]  # for development
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')    # where collectstatic puts files
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 
 # Default primary key field type
