@@ -219,30 +219,36 @@ def run_code(language, code, input_data):
             if compile_proc.returncode != 0:
                 return f"Compilation Error:\n{compile_proc.stderr}"
 
-            with open(input_file, "r") as infile, open(output_file, "w") as outfile:
-                exec_proc = subprocess.run(
-                    [str(exe_path)],
-                    stdin=infile,
-                    stdout=outfile,
-                    stderr=subprocess.PIPE,
-                    text=True,
-                    timeout=5
-                )
-            if exec_proc.returncode != 0:
-                return f"Runtime Error:\n{exec_proc.stderr}"
+            try:
+                with open(input_file, "r") as infile, open(output_file, "w") as outfile:
+                    exec_proc = subprocess.run(
+                        [str(exe_path)],
+                        stdin=infile,
+                        stdout=outfile,
+                        stderr=subprocess.PIPE,
+                        text=True,
+                        timeout=5
+                    )
+                if exec_proc.returncode != 0:
+                    return f"Runtime Error:\n{exec_proc.stderr}"
+            except subprocess.TimeoutExpired:
+                return "Time Limit Exceeded"
 
         elif language == "py":
-            with open(input_file, "r") as infile, open(output_file, "w") as outfile:
-                exec_proc = subprocess.run(
-                    [sys.executable, str(code_file)],
-                    stdin=infile,
-                    stdout=outfile,
-                    stderr=subprocess.PIPE,
-                    text=True,
-                    timeout=5
-                )
-            if exec_proc.returncode != 0:
-                return f"Runtime Error:\n{exec_proc.stderr}"
+            try:
+                with open(input_file, "r") as infile, open(output_file, "w") as outfile:
+                    exec_proc = subprocess.run(
+                        [sys.executable, str(code_file)],
+                        stdin=infile,
+                        stdout=outfile,
+                        stderr=subprocess.PIPE,
+                        text=True,
+                        timeout=5
+                    )
+                if exec_proc.returncode != 0:
+                    return f"Runtime Error:\n{exec_proc.stderr}"
+            except subprocess.TimeoutExpired:
+                return "Time Limit Exceeded"
 
         else:
             return "Unsupported language"
@@ -251,6 +257,7 @@ def run_code(language, code, input_data):
             output = f.read()
 
         return output
+
 
     finally:
         # Cleanup all temp files

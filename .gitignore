@@ -3,3 +3,8 @@ myenv
 inputs
 codes
 outputs
+online_judge/Dockerfile
+.DS_Store
+.vscode
+online_judge/db.sqlite3
+keys/*
