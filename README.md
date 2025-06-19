@@ -8,9 +8,14 @@
 
 ---
 
-A modern, open-source, Dockerized Django Online Judge for code evaluation and problem-solving.  
-**Production deployed at:** [www.evaledge.xyz](https://www.evaledge.xyz)
-**Demo Video:**[https://www.loom.com/share/945ecb2f830545218a8ec7ffa6312688?sid=33a1bc61-4b44-458b-9e4e-c43591c41eb9](https://www.loom.com/share/945ecb2f830545218a8ec7ffa6312688?sid=33a1bc61-4b44-458b-9e4e-c43591c41eb9)
+## Eveledge: Modern Online Judge Platform
+
+Experience a sleek, open-source, and Dockerized Django Online Judge for seamless code evaluation and problem-solving.
+
+- **Live Production:** [www.evaledge.xyz](https://www.evaledge.xyz)
+- **Demo Video:** [Watch on Loom](https://www.loom.com/share/945ecb2f830545218a8ec7ffa6312688?sid=33a1bc61-4b44-458b-9e4e-c43591c41eb9)
+
+Empowering developers and educators with efficient, scalable, and intuitive code assessment.
 
 ---
 
