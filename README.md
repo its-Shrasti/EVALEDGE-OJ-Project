@@ -1,5 +1,6 @@
 # 🚀 EVAL EDGE – Online Judge Platform
 
+This repo. contains codes in Python, J.S.,HTML and CSS of the project Evaledge
 ![Eval Edge Banner](./screenshots/banner.png) <!-- Replace with your own banner or logo -->
 
 [![Website](https://img.shields.io/badge/Live%20Site-www.evaledge.xyz-blue?style=flat-square&logo=google-chrome)](https://www.evaledge.xyz)
